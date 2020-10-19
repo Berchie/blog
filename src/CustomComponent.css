@@ -1,0 +1,93 @@
+/* styling the login page and login form */
+.login-main{
+    text-align: center;
+    width: 400px;
+    height: 400px;
+    margin: 5rem auto;
+    border-radius: 1.5rem;
+    box-shadow: 0px 11px 35px 4px rgba(194,194,194,0.8);
+}
+.login-text {
+    padding-top: 40px;
+    color: #186b9b;
+    /* font-family: ; */
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.login-input {
+    width: 75%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 15px;
+    background:rgba(78, 78, 78, 0.04);
+    padding: 10px 20px;
+    display: block;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px rgb (138,123, 128);
+    margin-top: 20px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.login-input:focus{
+    border: 1.5px solid rgba(0, 0, 0, 0.18) !important;
+}
+
+.login-btn{
+    width: 50%;
+    color: aliceblue;
+    font-weight: 700;
+    font-size: 15px;
+    background-color: #186b9b;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    outline: none;
+}
+
+.login-btn:hover{
+    background-color: #044d77;
+}
+
+.login-btn:focus{
+    border: none;
+    outline: none;
+}
+
+/* styling the home page */
+.home-main{
+    /* width: 400px; */
+    /* height: 400px; */
+    margin: 15px auto;
+    padding: 15px;
+    border-radius: 1rem;
+    box-shadow: 0px 11px 35px -3px rgba(223, 223, 223, 0.8);
+}
+
+.home-main:hover{
+    box-shadow: 0px 11px 35px 4px rgba(194,194,194,0.8);
+}
+
+/* create post page styling */
+.create-post-main{
+    text-align: center;
+}
+
+.create-post-text{
+    padding-top: 40px;
+    color: #186b9b;
+    /* font-family: ; */
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.create-form-input{
+    display: block;
+}
