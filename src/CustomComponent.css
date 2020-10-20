@@ -77,8 +77,21 @@
 
 /* create post page styling */
 .create-post-main{
+    width: 80%;
+    /* height: 700px; */
     text-align: center;
+    background-color: rgba(131, 130, 130, 0.205);
+    border: none;
+    margin: 3rem auto;
+    border-radius: 1rem;
+    box-shadow: 0px 11px 35px 4px rgba(219, 219, 219, 0.8);
 }
+
+/* .form-post{
+    text-align: center;
+    margin: 10 auto;
+    padding: 10 auto;
+} */
 
 .create-post-text{
     padding-top: 40px;
@@ -89,5 +102,70 @@
 }
 
 .create-form-input{
+    width: 80%;
     display: block;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 15px;
+    background:rgba(255, 255, 255, 0.623);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px rgb (138,123, 128);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    letter-spacing: 1px;
+    /* text-align: center; */
+}
+
+#date-picker{
+    width: 30%;
+}
+
+.create-form-input:focus{
+    border: 2px solid rgba(0, 0, 0, 0.205) !important;
+}
+
+.submit-btn{
+    width: 15%;
+    color: aliceblue;
+    font-weight: 700;
+    font-size: 15px;
+    background-color: #186b9b;
+    margin: 0 10px 15px 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+    outline: none;
+}
+
+.cancel-btn{
+    width: 15%;
+    color: aliceblue;
+    font-weight: 700;
+    font-size: 15px;
+    background-color: #424649;
+    margin: 0 10px 15px 10px ;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+    outline: none;
+}
+
+.submit-btn:hover{
+    background-color: #044d77;
+}
+
+.cancel-btn:hover{
+    background-color: #202224;
+}
+
+.submit-btn:focus, .cancel-btn:focus{
+    border: none;
+    outline: none;
 }
