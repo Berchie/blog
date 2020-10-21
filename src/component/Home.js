@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Row, Col} from 'react-bootstrap';
 import '../CustomComponent.css';
+import {blogposts} from '../data/BlogPosts';
 
-export const Home = () => (
+export const Home = () => { 
     
+    const [countPost, setCountPost] = useState(0);
+    //put the blogpost in state to track for new blog or state
+    blogposts.reverse();
+
+    return(
     <React.Fragment>
+        
+        {
+        countPost < 3 
+        ?
+            blogposts.map((post =>
+                <Row className="home-main" lg={true}>
+                <Col key={post.id}>
+                    <h2>{post.title}</h2>
+                    <p>{(post.body).slice(0, 310)}...<span><a href="/Post">Read more</a></span></p>
+                </Col>
+                </Row>
+                
+                // <Row className="home-main" lg={true}>
+                // <Col key={post.id}>
+                //     <h2>{post.title}</h2>
+                //     <p>{(post.body).slice(0, 310)}...<span><a href="/Post">Read more</a></span></p>
+                // </Col>
+                // </Row>
+            ), setCountPost(prevCountPt => prevCountPt + 1))
+        :
+            null
+        }
+
         <Row className="home-main" lg={true}>
             <Col lg={true}>
                 <h1>Home Page</h1>
@@ -41,4 +70,4 @@ export const Home = () => (
             </Col>
         </Row>
     </React.Fragment>
-)
+)}

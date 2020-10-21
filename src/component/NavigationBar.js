@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import styled from 'styled-components';
+import { useAppTheme } from '../stylecomponent/ThemeContext';
 
 const Styles = styled.div`
     .navbar{
@@ -14,8 +15,13 @@ const Styles = styled.div`
         &:hover{
             color: #fff;
         }
+        &:active{
+            color: #fff;
+        }
     }
 `;
+
+const theme = useAppTheme();
 
 export const NavigationBar = () => (
     <Styles>
@@ -36,6 +42,7 @@ export const NavigationBar = () => (
                     <Nav.Item>
                         <Nav.Link href="/Login">Login</Nav.Link>
                     </Nav.Item>
+                    <button onClick={theme.styleTheme}>Theme</button>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
