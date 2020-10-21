@@ -2,7 +2,10 @@ import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import styled from 'styled-components';
-import { useAppTheme } from '../stylecomponent/ThemeContext';
+import { useThemeToggle } from '../stylecomponent/ThemeContext';
+import {Link} from 'react-router-dom';
+// import {darkThemeNav, lightThemeNav} from '../stylecomponent/customTheme';
+
 
 const Styles = styled.div`
     .navbar{
@@ -21,30 +24,33 @@ const Styles = styled.div`
     }
 `;
 
-const theme = useAppTheme();
 
-export const NavigationBar = () => (
+
+export const NavigationBar = () => { 
+    const toggleTheme = useThemeToggle();
+    
+    return(
     <Styles>
-        <Navbar expand="lg" >
-            <Navbar.Brand href="/">Express</Navbar.Brand>
+        <Navbar expand="lg">
+            <Link className="navbar-brand" to = "/">Express</Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
                     <Nav.Item>
-                        <Nav.Link href="/">Home</Nav.Link>
+                        <Link className="nav-link" to="/">Home</Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href="/Blog">Blog</Nav.Link>
+                        <Link className="nav-link" to="/Blog">Blog</Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href="/CreatePost">New Post</Nav.Link>
+                        <Link className="nav-link" to="/CreatePost">New Post</Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href="/Login">Login</Nav.Link>
+                        <Link className="nav-link" to="/Login">Login</Link>
                     </Nav.Item>
-                    <button onClick={theme.styleTheme}>Theme</button>
+                    <button onClick={toggleTheme}>Theme</button>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
     </Styles>
-)
+)}

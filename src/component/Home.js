@@ -1,37 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Row, Col} from 'react-bootstrap';
 import '../CustomComponent.css';
 import {blogposts} from '../data/BlogPosts';
+import {Link} from 'react-router-dom';
+import { useAppTheme} from '../stylecomponent/ThemeContext';
 
 export const Home = () => { 
+
+    const darkTheme = useAppTheme();
+    const styleTheme = {
+        backgroundColor: darkTheme ? "#fff" : "#222",
+        color: darkTheme ? "#222" : "#fff",
+    };
     
-    const [countPost, setCountPost] = useState(0);
+    // const [countPost, setCountPost] = useState(0);
     //put the blogpost in state to track for new blog or state
-    blogposts.reverse();
+    // blogposts.reverse();
 
     return(
     <React.Fragment>
         
         {
-        countPost < 3 
-        ?
             blogposts.map((post =>
-                <Row className="home-main" lg={true}>
+                <Row className="home-main" lg={true} style={styleTheme}>
                 <Col key={post.id}>
                     <h2>{post.title}</h2>
-                    <p>{(post.body).slice(0, 310)}...<span><a href="/Post">Read more</a></span></p>
+                    <p>{(post.body).slice(0, 310)}...<span><Link to="/Post">Read more</Link></span></p>
                 </Col>
                 </Row>
-                
-                // <Row className="home-main" lg={true}>
-                // <Col key={post.id}>
-                //     <h2>{post.title}</h2>
-                //     <p>{(post.body).slice(0, 310)}...<span><a href="/Post">Read more</a></span></p>
-                // </Col>
-                // </Row>
-            ), setCountPost(prevCountPt => prevCountPt + 1))
-        :
-            null
+            ))
         }
 
         <Row className="home-main" lg={true}>

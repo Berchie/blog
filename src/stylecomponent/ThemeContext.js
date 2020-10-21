@@ -1,21 +1,25 @@
 import React, {useContext, useState, createContext} from 'react';
 
 export const AppThemeContext = createContext();
-// export const ThemeToggleContext = createContext();
+export const ThemeToggleContext = createContext();
+
+// export function useAppTheme(){
+
+//     const context = useContext(AppThemeContext);
+
+//     if (!context) {
+//         throw new Error(`useAppTheme must be used within the ThemeProvider`);
+//     } 
+//         return context;
+// }
 
 export function useAppTheme(){
-
-    const context = useContext(AppThemeContext);
-    if (!context) {
-        throw new Error(`useAppTheme must be used within the ThemeProvider`);
-    } else {
-        return context;
-    }
+    return useContext(AppThemeContext);
 }
 
-// export function useThemeToggle(){
-//     return (ThemeToggleContext);
-// }
+export function useThemeToggle(){
+    return useContext(ThemeToggleContext);
+}
 
 
 
@@ -25,57 +29,59 @@ export function useAppTheme(){
 // }
 
 // Provider hook that creates count object and handles state
-function useThemeProvider(){
+// function useThemeProvider(){
 
-    const themes = {
-        light: {
-          foreground: "#000000",
-          background: "#eeeeee"
-        },
-        dark: {
-          foreground: "#bbbbbb",
-          background: "#222222"
-        }
-      };
+//     const themes = {
+//         light: {
+//           color: "#000000",
+//           background: "#eeeeee"
+//         },
+//         dark: {
+//           color: "#bbbbbb",
+//           background: "#222222"
+//         }
+//       };
 
-    //set the Default Theme of the App
-    const [defaultTheme, setDefaultTheme] = useState(themes.light);
+//     //set the Default Theme of the App
+//     const [defaultTheme, setDefaultTheme] = useState(false);
 
 
-      //method on defaultTheme object that allows changing of them 
-      const styleTheme = () =>{
-        if (defaultTheme === themes.light) {
-            setDefaultTheme(themes.dark);
-        } else {
-            setDefaultTheme(themes.light);
-        }
-    };
+//       //method on defaultTheme object that allows changing of them 
+//     //   const styleTheme = () =>{
+//     //     if (defaultTheme === themes.light) {
+//     //         setDefaultTheme(JSON.stringify(themes.dark));
+//     //     } else {
+//     //         setDefaultTheme(JSON.stringify(themes.light));
+//     //     }
+//     // };
 
-    //   const styleTheme = {
-    //       background: defaultTheme ? themes.dark : themes.light
-    //   };
+//       const styleTheme = {
+//           background: defaultTheme ? "#CCC" : "#333",
+//           color: defaultTheme ? "#333" : "CCC"
+//       };
     
-    return { defaultTheme, styleTheme};
-}
+//     return { defaultTheme, styleTheme};
+// }
 
 // Provider component that wraps your app and makes count object ...
 // ... available to any child component that calls useAppTheme().
 export function ThemeProvider ({children}){
 
-    // const [defaultTheme, setDefaultTheme] = useState(true);
+    const [defaultTheme, setDefaultTheme] = useState(true);
 
 
-    // function toggleTheme() {
-    //     setDefaultTheme(prevDefault => !prevDefault)
-    // }
+    function toggleTheme() {
+        setDefaultTheme(prevDefault => !prevDefault)
+    }
+    
 
-    const appTheme = useThemeProvider();
+    // const appTheme = useThemeProvider();
 
     return(
-        <AppThemeContext.Provider value={appTheme}>
-            {/* <ThemeToggleContext.Provider value={toggleTheme}> */}
+        <AppThemeContext.Provider value={defaultTheme}>
+            <ThemeToggleContext.Provider value={toggleTheme}> 
                 {children}
-            {/* </ThemeToggleContext.Provider> */}
+            </ThemeToggleContext.Provider>
         </AppThemeContext.Provider>
     )
 }

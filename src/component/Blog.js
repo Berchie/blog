@@ -1,10 +1,17 @@
 import React from 'react';
-import { useAppTheme } from '../stylecomponent/ThemeContext';
+// import { useAppTheme } from '../stylecomponent/ThemeContext';
 
-const theme = useAppTheme();
 
-export const Blog = () => (
-    <div style={theme.styleTheme}>
-        <h1>Post Page</h1>
-    </div>
-)
+export const Blog = () => {
+    // const darkTheme = useAppTheme();
+    // const styleTheme = {
+    //     backgroundColor: darkTheme ? "#fff" : "#333",
+    //     color: darkTheme ? "#333" : "#fff"
+    // }
+
+    return(
+        <div>
+            <h1>Post Page</h1>
+        </div>
+    )
+}

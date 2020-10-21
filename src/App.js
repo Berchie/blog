@@ -12,10 +12,15 @@ import {ThemeProvider} from './stylecomponent/ThemeContext';
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
+  // const darkTheme = useAppTheme();
+  // const styleTheme = {
+  //       backgroundColor: darkTheme ? "#fff" : "#333",
+  //       color: darkTheme ? "#333" : "#fff"
+  // }
 
   return (
-    <React.Fragment>
-      <ThemeProvider>
+    <ThemeProvider> 
+      <div>
           <Router>
             <NavigationBar loggedIn = {loggedIn}/>
             <Jumbotron/>
@@ -27,12 +32,12 @@ function App() {
                   <Route path="/Login">
                     <Login setLoggedIn = {setLoggedIn} />
                   </Route>
-                  <Redirect to="/" />
+                  {/* <Redirect to="/" /> */}
                 </Switch>
               </Layout>
           </Router>
-      </ThemeProvider>
-    </React.Fragment>
+        </div>
+    </ThemeProvider>
   );
 }
 
