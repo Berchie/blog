@@ -1,3 +1,4 @@
+*{ box-sizing: border-box;}
 /* styling the login page and login form */
 .login-main{
     text-align: center;
@@ -168,4 +169,92 @@
 .submit-btn:focus, .cancel-btn:focus{
     border: none;
     outline: none;
+}
+
+/* styling the post page */
+
+.column{
+    float: left;
+    padding: 20px;
+}
+
+.clearfix::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.content{
+    width: 75%;
+}
+
+.content hr{
+    /* width: 70%; */
+    border: 0.5px solid #d8d8d8d2;
+}
+.content-p{
+    text-align: justify;
+}
+
+.menu{
+    width: 25%;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+  
+.menu li {
+    padding: 8px;
+    margin-bottom: 8px;
+    background-color: #2a94bb;
+    color: #ffffff;
+}
+  
+.menu li:hover {
+    background-color: #0099cc;
+}
+.link-other-post{
+    color: #ffffff;
+    text-decoration: none;
+}
+.link-other-post:hover{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.comment-btn{
+    /* width: 15%; */
+    color: aliceblue;
+    font-weight: 700;
+    font-size: 15px;
+    background-color: #186b9b;
+    margin: 0 10px 15px 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    outline: none;
+}
+
+.comment-input{
+    /* width: 80%; */
+    display: block;
+    color: rgb(233, 234, 235);
+    font-weight: 700;
+    font-size: 15px;
+    background:rgba(27, 27, 27, 0.5);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px rgb (138,123, 128);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* margin-left: 50px; */
+    letter-spacing: 1px;
+    /* text-align: center; */
 }

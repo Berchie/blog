@@ -4,14 +4,16 @@ import '../CustomComponent.css';
 import {blogposts} from '../data/BlogPosts';
 import {Link} from 'react-router-dom';
 import { useAppTheme} from '../stylecomponent/ThemeContext';
+// import { Post } from './Post';
 
 export const Home = () => { 
 
     const darkTheme = useAppTheme();
     const styleTheme = {
-        backgroundColor: darkTheme ? "#fff" : "#222",
-        color: darkTheme ? "#222" : "#fff",
+        backgroundColor: darkTheme ? "#fff" : "#333",
+        color: darkTheme ? "#333" : "#fff",
     };
+    
     
     // const [countPost, setCountPost] = useState(0);
     //put the blogpost in state to track for new blog or state
@@ -25,7 +27,7 @@ export const Home = () => {
                 <Row className="home-main" lg={true} style={styleTheme}>
                 <Col key={post.id}>
                     <h2>{post.title}</h2>
-                    <p>{(post.body).slice(0, 310)}...<span><Link to="/Post">Read more</Link></span></p>
+                    <p>{(post.body).slice(0, 310)}...<span><Link to= {{pathname:"/Post", id:post.id}} >Read more</Link></span></p>
                 </Col>
                 </Row>
             ))

@@ -18,9 +18,24 @@ const Styles = styled.div`
         &:hover{
             color: #fff;
         }
-        &:active{
+        &:after{
             color: #fff;
         }
+    }
+`;
+
+const Button = styled.button`
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: #222;
+    color: #bbb;
+
+    &:hover{
+        color: #fff;
+    }
+    &:focus{
+        outline: none;
     }
 `;
 
@@ -28,7 +43,7 @@ const Styles = styled.div`
 
 export const NavigationBar = () => { 
     const toggleTheme = useThemeToggle();
-    
+
     return(
     <Styles>
         <Navbar expand="lg">
@@ -48,7 +63,7 @@ export const NavigationBar = () => {
                     <Nav.Item>
                         <Link className="nav-link" to="/Login">Login</Link>
                     </Nav.Item>
-                    <button onClick={toggleTheme}>Theme</button>
+                    <Button onClick={toggleTheme}>Theme</Button>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

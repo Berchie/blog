@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {Home} from './component/Home';
 import {Login} from './component/Login';
 import {CreatePost} from './component/CreatepPost';
@@ -8,6 +8,7 @@ import { NavigationBar } from './component/NavigationBar';
 import { Layout } from './stylecomponent/Layout';
 import { Jumbotron} from './stylecomponent/Jumbotron';
 import {ThemeProvider} from './stylecomponent/ThemeContext';
+import { Post } from './component/Post';
 
 function App() {
 
@@ -31,6 +32,9 @@ function App() {
                   <Route path="/CreatePost" component={CreatePost} />
                   <Route path="/Login">
                     <Login setLoggedIn = {setLoggedIn} />
+                  </Route>
+                  <Route path="/Post">
+                    <Post />
                   </Route>
                   {/* <Redirect to="/" /> */}
                 </Switch>
