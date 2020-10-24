@@ -1,22 +1,21 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Row, Col} from 'react-bootstrap';
 import '../CustomComponent.css';
-import {blogposts} from '../data/BlogPosts';
 import {Link} from 'react-router-dom';
 import { useAppTheme} from '../stylecomponent/ThemeContext';
-// import { Post } from './Post';
+import { blogContext } from "../data/BlogDataContext";
 
 export const Home = () => { 
 
+    const blogcontext = useContext(blogContext);
     const darkTheme = useAppTheme();
     const styleTheme = {
         backgroundColor: darkTheme ? "#fff" : "#333",
         color: darkTheme ? "#333" : "#fff",
     };
     
-    // const [countPost, setCountPost] = useState(0);
-    //put the blogpost in state to track for new blog or state
-    // blogposts.reverse();
+    const blogposts = blogcontext.blogPosts;
+
 
     return(
     <React.Fragment>
