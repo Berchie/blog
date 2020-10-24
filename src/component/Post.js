@@ -69,7 +69,7 @@ export const Post = () => {
             {
                 data.map((post => 
                     <div key={post.id}>
-                        <img src={""} alt="" />
+                        <img src={post.pic} alt="post-pic" style={{width:"100%", height:"auto"}} />
                         <h2>{post.title}</h2>
                         <p>{post.date}</p>
                         <p className="content-p">{post.body}</p>
