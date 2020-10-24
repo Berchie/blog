@@ -258,3 +258,49 @@
     letter-spacing: 1px;
     /* text-align: center; */
 }
+
+/* style blog page or component */
+.blog-container{
+    margin: 10px auto;
+    padding: 5px;
+    display: inline-flex;
+}
+
+.polaroid{
+    width: 350px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 1px 1px;
+    margin-bottom: 25px;
+    margin-right: 6px;
+    flex-wrap: wrap;
+    display: inline-flex;
+}
+
+.text-container{
+    text-align: center;
+    padding: 10px;
+}
+
+.btn-blog{
+    text-align: center;
+    color: aliceblue;
+    font-weight: 700;
+    font-size: 15px;
+    background-color: #186b9b;
+    margin: 0 10px 15px 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+
+}
+
+.btn-blog:hover{
+    background-color: #044d77;
+}
+
+.btn-blog:focus{
+    border: none;
+    outline: none;
+}

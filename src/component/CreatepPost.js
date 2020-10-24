@@ -21,6 +21,7 @@ export const CreatePost = () => {
                 <form className="form-post">
                     <input className="create-form-input" type="text" placeholder="Title"/>
                     <input className="create-form-input" id="date-picker" type="date"/>
+                    <input className="create-form-input" type="text" placeholder="Image URL"/>
                     <textarea className="create-form-input"  rows="10" cols="40" placeholder="Body"/>
                     <button className="submit-btn">Submit</button>
                     <button className="cancel-btn">Cancel</button>

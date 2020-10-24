@@ -10,7 +10,7 @@ export const Layout = (props) => {
     //     color: darkTheme ? "#333" : "#fff"
     // } 
     return(
-    <Container flud>
+    <Container flud = "true">
         {props.children}
     </Container>
 )}

@@ -1,17 +1,44 @@
-import React from 'react';
-// import { useAppTheme } from '../stylecomponent/ThemeContext';
+import React, { useContext } from 'react';
+import {blogContext} from '../data/BlogDataContext';
+import {useHistory} from 'react-router-dom';
+import '../CustomComponent.css';
+import { Row, Col } from 'react-bootstrap';
+
 
 
 export const Blog = () => {
-    // const darkTheme = useAppTheme();
-    // const styleTheme = {
-    //     backgroundColor: darkTheme ? "#fff" : "#333",
-    //     color: darkTheme ? "#333" : "#fff"
-    // }
+    const history = useHistory();
+    //Using useContent Hook for function component.
+    //I don't need to use the "Context.Consumer"
+    const postContext = useContext(blogContext);
+
+    //geting the blogposts data that was passed from the context provider
+    const post = (postContext.blogPosts); 
+    let postid = null;
+    
+    function postHistory(e) {
+        e.preventDefault();
+        postid = e.target.value;
+        history.push({pathname:"/Post", id:postid});
+        console.log(postid);
+    }
+    console.log(post.map( e => e.title));
 
     return(
-        <div>
-            <h1>Post Page</h1>
-        </div>
+        <React.Fragment>
+            {post.map((p =>
+                <Row className="blog-container">
+                <Col className="polaroid" key={p.id}>
+                    <img src={p.pic} alt="post-picture" className="post-img" style={{width:"100%", height:"auto"}} />
+                    <div className="text-container">
+                        <h1 style={{fontSize:"30px", fontStyle:"oblique", fontWeight:"bold"}}>{p.title}</h1>
+                        <p style={{fontSize:"13px", fontStyle:"italic", fontWeight:"bold"}}>Date: {p.date}</p>
+                        <p>{(p.body).slice(0, 310)}...</p>
+                        <button className="btn-blog" value={p.id} onClick={postHistory}>Read more</button>
+                    </div>
+                </Col>
+                </Row>))}
+        </React.Fragment>
     )
+    
 }
