@@ -18,9 +18,6 @@ const Styles = styled.div`
         &:hover{
             color: #fff;
         }
-        &:after{
-            color: #fff;
-        }
     }
 `;
 
