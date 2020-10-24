@@ -1,32 +1,31 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 // import {Row, Col} from 'react-bootstrap';
 import '../CustomComponent.css';
 import {blogposts} from '../data/BlogPosts';
 import {Link, useLocation, useHistory} from 'react-router-dom';
-// import { useAppTheme} from '../stylecomponent/ThemeContext';
+import {blogContext} from '../data/BlogDataContext';
 import {HandThumbsUp, HandThumbsDown} from 'react-bootstrap-icons';
 
 
 
 
-export const Post = (props) => {
+export const Post = () => {
     
     const location = useLocation();
     const history = useHistory();
+    const postDeatil = useContext(blogContext);
     const [readerComment, setReaderComment] = useState("");
     const [upVote, setUpVote] = useState(0);
     const [downVote, setDownVote] = useState(0);
     const [voteType, setVoteType] = useState(null);
-    const blogPost = blogposts.filter((post => post.id === location.id)); //getting click post using filter method of map function
-    const comments = blogPost.map( comment => comment.comments);
+    let postid = null;
+    
+    //getting click post using filter method of map function
+    const data = (postDeatil.blogPosts.filter(e => e.id == location.id));
+    const comments = data.map( comment => comment.comments);
+    const blogPost = postDeatil.blogPosts;
 
-    // function historyArtice(e) {
-    //     e.preventDefault();
-    //     history.push({
-    //         pathname: "/Post",
-    //         id: {}
-    //     })
-    // }
+    console.log(data);
 
     const handleUpvote= (e) => {
         e.preventDefault();
@@ -66,7 +65,7 @@ export const Post = (props) => {
     <div className="clearfix">
         <div className="column content">
             {
-                blogPost.map((post => 
+                data.map((post => 
                     <div key={post.id}>
                         <img src={""} alt="" />
                         <h2>{post.title}</h2>
@@ -74,7 +73,7 @@ export const Post = (props) => {
                         <p className="content-p">{post.body}</p>
                         {/* <hr></hr> */}
                         {/* add upvote, downvote */}
-                        <p><HandThumbsUp onClick={handleUpvote}/>{blogPost.vote_up} <HandThumbsDown onClick={handleDownVote}/>{blogPost.vote_down}</p>
+                        <p><HandThumbsUp onClick={handleUpvote}/>{post.vote_up} <HandThumbsDown onClick={handleDownVote}/>{post.vote_down}</p>
                         <hr></hr>
                         <p className="content-p">{post.comments["text"]}</p>
                         {
@@ -94,7 +93,7 @@ export const Post = (props) => {
            <p>Blog Titles</p>
             <ul>
                 {
-                    blogposts.map((postTiles => 
+                    blogPost.map((postTiles => 
                         <li key={postTiles.id} onClick={()=> history.push({pathname:`/Post/id?${postTiles.id}&title=${postTiles.title}`, id:postTiles.id})}><Link to={{pathname:`/Post/id?${postTiles.id}&title=${postTiles.title}`, id:postTiles.id}} className="link-other-post">
                             {postTiles.title}
                             </Link>

@@ -27,9 +27,9 @@ export const Blog = () => {
     return(
         <React.Fragment>
             {post.map((p =>
-                <Row className="blog-container">
-                <Col className="polaroid" key={p.id}>
-                    <img src={p.pic} alt="post-picture" className="post-img" style={{width:"100%", height:"auto"}} />
+                <Row className="blog-container" key={p.id}>
+                <Col className="polaroid">
+                    <img src={p.pic} alt="post-pic" className="post-img" style={{width:"100%", height:"auto"}} />
                     <div className="text-container">
                         <h1 style={{fontSize:"30px", fontStyle:"oblique", fontWeight:"bold"}}>{p.title}</h1>
                         <p style={{fontSize:"13px", fontStyle:"italic", fontWeight:"bold"}}>Date: {p.date}</p>
