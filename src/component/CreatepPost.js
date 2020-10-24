@@ -33,7 +33,7 @@ export const CreatePost = () => {
             <Alert variant="danger" onClose={() => setShow(false)} dismissible>
                 <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
                 <p>
-                    How can you post a blog with Title, Date or Context. Check again before you post!!!
+                    How can you post a blog without Title, Date or Context. Check again before you post!!!
                     Title, Date, and Body should be provided before you can submit your post. Thank you.
                 </p>
             </Alert>

@@ -22,22 +22,23 @@ function App() {
   // }
   
   return (
-    <ThemeProvider> 
+    <ThemeProvider>
+      <BlogProvider value={providerData}>
       <div>
           <Router>
-            <NavigationBar loggedIn = {loggedIn}/>
+            <NavigationBar loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/>
             <Jumbotron/>
               <Layout>
                 <Switch>
                   <Route exact path="/" component={Home} />
 
-                  <BlogProvider value={providerData}>
+                  
                     <Route path="/Blog" component={Blog} />
-                    <Route path="/CreatePost" component={CreatePost} />
+                    <Route path="/CreatePost" component={CreatePost}/>
                     <Route path="/Post">
                       <Post />
                     </Route>
-                  </BlogProvider>
+                  
           
                   <Route path="/Login">
                     <Login setLoggedIn = {setLoggedIn} />
@@ -47,6 +48,7 @@ function App() {
               </Layout>
           </Router>
         </div>
+        </BlogProvider>
     </ThemeProvider>
   );
 }

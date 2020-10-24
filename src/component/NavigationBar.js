@@ -41,8 +41,13 @@ const Button = styled.button`
 
 
 
-export const NavigationBar = () => { 
+export const NavigationBar = (props) => { 
     const toggleTheme = useThemeToggle();
+
+    const logOut =(e)=>{
+        e.preventDefault();
+        props.setLoggedIn(false);
+    }
 
     return(
     <Styles>
@@ -58,11 +63,12 @@ export const NavigationBar = () => {
                         <Link className="nav-link" to="/Blog">Blog</Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Link className="nav-link" to="/CreatePost">New Post</Link>
+                        {props.loggedIn && <Link className="nav-link" to="/CreatePost">New Post</Link>}
                     </Nav.Item>
                     <Nav.Item>
-                        <Link className="nav-link" to="/Login">Login</Link>
+                        {!props.loggedIn && <Link className="nav-link" to="/Login">Login</Link>}
                     </Nav.Item>
+                    {props.loggedIn&& <Button onClick={logOut}>Logout</Button>}
                     <Button onClick={toggleTheme}>Theme</Button>
                 </Nav>
             </Navbar.Collapse>
