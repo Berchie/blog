@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 // import {Row, Col} from 'react-bootstrap';
 import '../CustomComponent.css';
 import {Link, useLocation} from 'react-router-dom';
@@ -16,7 +16,7 @@ export const Post = () => {
     const [readerComment, setReaderComment] = useState("null");
     // const [upVote, setUpVote] = useState(data.vote_up);
     // const [downVote, setDownVote] = useState(data.vote_down);
-    
+    console.log(location.id);
     //getting click post using filter method of map function
     let data = (postDeatil.blogPosts.filter(e => e.id === location.id));
     const blogPost = postDeatil.blogPosts;
