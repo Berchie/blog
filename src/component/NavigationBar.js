@@ -49,7 +49,9 @@ export const NavigationBar = (props) => {
     return(
     <Styles>
         <Navbar expand="lg">
-            <Link className="navbar-brand" to = "/">Express</Link>
+            <Link className="navbar-brand" to = "/">
+                <Navbar.Brand>Express</Navbar.Brand>
+            </Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
