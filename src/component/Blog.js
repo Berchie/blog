@@ -22,6 +22,7 @@ export const Blog = () => {
         history.push({pathname:"/Post", id:postid});
         console.log(postid);
     }
+    
     console.log(post.map( e => e.title));
 
     return(
