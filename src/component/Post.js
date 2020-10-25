@@ -1,8 +1,8 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 // import {Row, Col} from 'react-bootstrap';
 import '../CustomComponent.css';
-import {Link, useLocation, useHistory} from 'react-router-dom';
-import {blogContext, providerData} from '../data/BlogDataContext';
+import {Link, useLocation} from 'react-router-dom';
+import {blogContext} from '../data/BlogDataContext';
 import {HandThumbsUp, HandThumbsDown} from 'react-bootstrap-icons';
 
 
@@ -11,57 +11,48 @@ import {HandThumbsUp, HandThumbsDown} from 'react-bootstrap-icons';
 export const Post = () => {
     
     const location = useLocation();
-    const history = useHistory();
+    // const history = useHistory();
     const postDeatil = useContext(blogContext);
     const [readerComment, setReaderComment] = useState("null");
-    const [upVote, setUpVote] = useState(0);
-    const [downVote, setDownVote] = useState(0);
-    const [voteType, setVoteType] = useState("");
+    // const [upVote, setUpVote] = useState(data.vote_up);
+    // const [downVote, setDownVote] = useState(data.vote_down);
     
     //getting click post using filter method of map function
-    const data = (postDeatil.blogPosts.filter(e => e.id == location.id));
-    const comments = data.map( comment => comment.comments);
+    let data = (postDeatil.blogPosts.filter(e => e.id === location.id));
     const blogPost = postDeatil.blogPosts;
 
-    console.log(data);
+    let [dataCt, setDataCt] = useState(1);//use this state to update the comments on screen
+    const upVoteData = data.map(v => v.vote_up)[0];
+    const downVoteData = data.map(vote => vote.vote_down)[0];
+    const [upVote, setUpVote] = useState(upVoteData);
+    const [downVote, setDownVote] = useState(downVoteData);
 
+    // console.log(data.map(e => e.title), dataCt, upVoteData, upVote, downVoteData, downVote);
+
+    
     const handleUpvote= (e) => {
         e.preventDefault();
-        setUpVote(prevUpvote => prevUpvote + 1);
-        setVoteType("upvote");
-        postDeatil.updateVote(location.id, voteType, upVote);
-        // setUpVote(0);
-        // udpateVote(location.id, voteType);
+        setUpVote(upVote+1);
+        // vUp = data.vote_up+1;
+        postDeatil.updateVote(location.id, "upvote", upVote);
     }
 
     const handleDownVote = (e) => {
         e.preventDefault();
-        setDownVote(prevDownVote => prevDownVote + 1);
-        setVoteType("downvote");
-        postDeatil.updateVote(location.id, setVoteType, downVote);
-        // setDownVote(0);
-        // udpateVote(location.id, voteType);
-    }
-
-    const addUserComment=(e)=>{
-        e.preventDefault();
-
-        // if (readerComment === "") {
-            providerData.addComment(location.id, userComment);
-            console.log(providerData.addComment(location.id, userComment))
-            // console.log(location.id, userComment);
-            // console.log(comments.push(userComment));
-            // console.log(comments);
-            
-        // }
-
+        setDownVote(downVote+1);
+        postDeatil.updateVote(location.id, "downvote", downVote);
     }
 
     const userComment = {
         commentid: new Date().getTime(),
         text: readerComment
-      }
+    }
 
+    const addUserComment=(e)=>{
+        e.preventDefault();
+        postDeatil.addComment(location.id, userComment);
+        setDataCt(prevDataCt => prevDataCt + 1);//use this state to update the comments on screen
+    }
     
     return(
     <div className="clearfix">
@@ -73,19 +64,20 @@ export const Post = () => {
                         <h2>{post.title}</h2>
                         <p>{post.date}</p>
                         <p className="content-p">{post.body}</p>
-                        {/* <hr></hr> */}
-                        {/* add upvote, downvote */}
-                        <p><HandThumbsUp onClick={handleUpvote}/>{post.vote_up} <HandThumbsDown onClick={handleDownVote}/>{post.vote_down}</p>
-                        <hr></hr>
-                        <p className="content-p">{post.comments["text"]}</p>
-                        {
-                            comments.map((comm, index) => <p key={comm[index].commentid}>{comm[index].text}</p>)
-                        }
-                        <hr></hr>
+                        <HandThumbsUp onClick={handleUpvote} style={{cursor:"pointer"}}/>{post.vote_up} <HandThumbsDown onClick={handleDownVote} style={{cursor:"pointer"}}/>{post.vote_down}
                         <form>
                             <textarea className="comment-input" rows="5" cols="70" placeholder="comment" value={readerComment} onChange={(e) => setReaderComment(e.target.value)}/> 
                             <button className="comment-btn" onClick={addUserComment}>Add comment</button>
                         </form>
+                        <h6>Comments:</h6>
+                        <hr></hr>
+                        {
+                            data[0].comments.map((comm, index)=> 
+                                <React.Fragment key={index+1}>
+                                    <p style={{fontSize:"20px", fontWeight:"normal", fontStyle:"italic"}}>{comm.text}</p>
+                                    <hr className="comment-hr"></hr>
+                                </React.Fragment>)
+                        }
                     </div>
                 ))
             } 
@@ -96,7 +88,7 @@ export const Post = () => {
             <ul>
                 {
                     blogPost.map((postTiles => 
-                        <li key={postTiles.id} onClick={()=> history.push({pathname:`/Post/id?${postTiles.id}&title=${postTiles.title}`, id:postTiles.id})}><Link to={{pathname:`/Post/id?${postTiles.id}&title=${postTiles.title}`, id:postTiles.id}} className="link-other-post">
+                        <li key={postTiles.id}><Link to={{pathname:`/Post/id?${postTiles.id}&title=${postTiles.title}`, id:postTiles.id}} className="link-other-post">
                             {postTiles.title}
                             </Link>
                         </li>
