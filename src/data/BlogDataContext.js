@@ -30,7 +30,7 @@ const  blogPosts = [
     vote_down: 4,
     comments: [
             {
-                commentid: "1603194999795", 
+                commentid: 1603194999795, 
                 text:"lol...."
             },
     ]
@@ -56,29 +56,28 @@ const  blogPosts = [
 
 // }
 function updateVote(postId, VoteT,vote) {
-  for (const i in blogPosts) {
+  for (let i in blogPosts) {
       if (blogPosts[i].id === postId) {
           if (VoteT === "upvote") {
-              blogPosts[i].vote_up += vote;
+              blogPosts[i].vote_up = vote;
           } else {
-              blogPosts[i].vote_down += vote;
+              blogPosts[i].vote_down = vote;
           }
       }
-      break; //stop this loop, I found it!
   }
 }
 
-function addComment(blogId, uComment) {
-    let userCommentData = blogPosts.filter(c => c.id == blogId);
-    let allComments = userCommentData.map((comm => comm.comments));
-    allComments.unshift(uComment);
+// let userCommentData = null;
+// let allComments =null;
 
-    // for (const i in blogPosts){
-    //   if (blogPosts[i] === blogId) {
-    //     blogPosts[i].comments.unshift(userComment)
-    //   }
-    //   break; //stop this loop, I found it and added the comment. Thx!!
-    // }
+function addComment(blogId, uComment) {
+   for (const c in blogPosts) {
+     if (blogPosts[c].id === blogId) {
+       blogPosts[c].comments = [...blogPosts[c].comments, uComment];
+       console.log(blogPosts[c].comments, "id:",blogId);
+     }
+   }
+
 }
 
 function addBlogPost(newPost) {
